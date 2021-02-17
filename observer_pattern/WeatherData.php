@@ -1,8 +1,9 @@
 <?php
 
+require_once 'Subject.php';
+
 class WeatherData implements Subject
 {
-
     private $observers;
     private $temperature;
     private $humidity;
@@ -10,18 +11,17 @@ class WeatherData implements Subject
 
     public function __construct()
     {
-        $this->observers = array();
+        $this->observers = [];
     }
 
     public function registerObserver(Observer $o): void
     {
-        $observers[] = $o;
+        $this->observers[] = $o;
     }
 
     public function removeObserver(Observer $o): void
     {
         $i = array_search($o, $this->observers);
-
         if ($i >= 0) {
             unset($this->observers[$i]);
         }
@@ -46,11 +46,4 @@ class WeatherData implements Subject
         $this->pressure    = $pressure;
         $this->measurementsChanged();
     }
-
 }
-
-$teste = array('aaa', 'bbb', 'ccc', 'ddd');
-
-unset($teste[1]);
-
-print_r($teste);

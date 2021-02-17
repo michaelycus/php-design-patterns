@@ -3,10 +3,11 @@
 require_once 'Observer.php';
 require_once 'DisplayElement.php';
 
-class CurrentConditionsDisplay implements Observer, DisplayElement
+class StatisticsDisplay implements Observer, DisplayElement
 {
     private $temperature;
     private $humidity;
+    private $pressure;
     private $weatherData;
 
     public function __construct(Subject $weatherData)
@@ -19,11 +20,12 @@ class CurrentConditionsDisplay implements Observer, DisplayElement
     {
         $this->temperature = $temperature;
         $this->humidity    = $humidity;
+        $this->pressure    = $pressure;
         $this->display();
     }
 
     public function display(): void
     {
-        echo "Current conditions: " . $this->temperature . "F degrees and " . $this->humidity . "% humidity\n";
+        echo "Current conditions: " . $this->temperature . "F degrees and " . $this->humidity . "% humidity and " . $this->pressure . " p\n";
     }
 }
